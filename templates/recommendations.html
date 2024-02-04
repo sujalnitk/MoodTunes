@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Recommendations</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #004080;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #004080;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        input[type="submit"] {
+            background-color: #004080;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #002f5e;
+        }
+
+        .recommendations {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .recommendation-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            max-width: 300px;
+            width: 100%;
+        }
+
+        .recommendation-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .social-links {
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin-right: 10px;
+            text-decoration: none;
+            color: #004080;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #002f5e;
+        }
+    </style>
+</head>
+<body>
+    <h1>Discover New Music</h1>
+
+    <form action="/predictdata" method="post">
+        <label for="text">Enter your mood:</label>
+        <textarea id="text" name="Text" rows="4" cols="50" required placeholder="E.g., feeling happy, excited, calm"></textarea>
+        <br>
+        <input type="submit" value="Get Recommendations">
+    </form>
+
+    {% if songs_info %}
+        <div class="recommendations">
+            {% for song_info in songs_info %}
+                <div class="recommendation-card">
+                    <img src="{{ song_info.image_url }}" alt="{{ song_info.name }}">
+                    <h3>{{ song_info.name }}</h3>
+                    <p><a href="{{ song_info.spotify_url }}" target="_blank">Listen on Spotify</a></p>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No recommendations available.</p>
+    {% endif %}
+
+    <div class="social-links">
+        <a href="https://github.com/YourGitHubUsername" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.instagram.com/YourInstagramUsername/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <!-- Add more social links as needed -->
+    </div>
+</body>
+</html>

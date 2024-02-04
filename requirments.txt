@@ -1,0 +1,7 @@
+spacy
+gensim
+pandas
+Flask
+nltk
+pickle
+string
