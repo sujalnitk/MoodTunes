@@ -1,7 +1,5 @@
-spacy
-gensim
-pandas
 Flask
-nltk
-pickle
-string
+transformers
+torch
+pandas
+numpy 
