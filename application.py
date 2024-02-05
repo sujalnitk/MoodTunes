@@ -1,4 +1,3 @@
-import pickle
 from flask import Flask, request, jsonify, render_template
 import numpy as np
 import pandas as pd
@@ -15,10 +14,7 @@ import random
 import base64
 from io import BytesIO
 
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
-from sklearn.preprocessing import MinMaxScaler
-import matplotlib.pyplot as plt
+
 import requests
 
 import warnings
