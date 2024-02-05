@@ -25,7 +25,7 @@ import warnings
 warnings.filterwarnings("ignore")
 
 #loading Dataset
-df = pd.read_csv('dataset/data_moods 2.csv',encoding='utf-8')
+df = pd.read_csv('dataset/Songs_Dataset_Final.csv',encoding='utf-8')
 
 application = Flask(__name__)
 app = application
@@ -105,13 +105,13 @@ def get_output(text):
 
 def ChooseDataset(x):
     if x == "Fear":
-        return df[df['mood'].isin(['Happy', 'Calm'])]
+        return df[df['Mood'].isin(['Happy', 'Calm'])]
     if x == "Happy":
-        return df[df['mood'].isin(['Energetic', 'Happy', 'Calm'])]
+        return df[df['Mood'].isin(['Energetic', 'Happy', 'Calm'])]
     if x == "Sad":
-        return df[df['mood'].isin(['Sad', 'Calm'])]
+        return df[df['Mood'].isin(['Sad', 'Calm'])]
     if x == "Surprise":
-        return df[df['mood'].isin(['Calm'])]
+        return df[df['Mood'].isin(['Calm'])]
     return df
 
 ## Home page Route
@@ -127,7 +127,7 @@ def predict_datapoints():
         string = get_output(Text)
 
         dataset = ChooseDataset(string)
-        random_songs = dataset.sample(n=5)
+        random_songs = dataset.sample(n=20)
 
         songs_info = []
         client_id = 'bdb135bd934845888ebbca4503dafa52'
@@ -162,7 +162,7 @@ def predict_datapoints():
                     image_url = data['album']['images'][0]['url']
                     song_info['image_url'] = image_url
 
-    
+
         return render_template('recommendations.html', songs_info=songs_info)
 
         
